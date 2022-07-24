@@ -8,7 +8,7 @@ useEffect(() => {
 
     async function fetchData(){
         const request = await axios.get(requests.fetchRomanceMovies);
-        console.log(">---",request,"<---");
+        // console.log(">---",request,"<---");
         // console.log(Math.floor(Math.random() * request.data.results.length))
         setMovies(
             request.data.results[
@@ -20,7 +20,7 @@ useEffect(() => {
     fetchData();
 }, []);
 
-console.log(movie);
+// console.log(movie);
 
 function truncate(str,n){
     return str?.length > n ? str.substr(0, n-1)+ "..." : str;
