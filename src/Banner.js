@@ -7,9 +7,8 @@ const [movie,setMovies] = useState([]);
 useEffect(() => {
 
     async function fetchData(){
-        const request = await axios.get(requests.fetchRomanceMovies);
+        const request = await axios.get(requests.fetchSciFi);
         // console.log(">---",request,"<---");
-        // console.log(Math.floor(Math.random() * request.data.results.length))
         setMovies(
             request.data.results[
                 Math.floor(Math.random() * request.data.results.length)

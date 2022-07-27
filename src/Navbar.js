@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import  {signInWithPopup} from "firebase/auth";
 import {auth , provider} from './firebase';
+
 function Navbar({handleClick}) {
-  const [show, handleShow] = useState(false);
-  
+  const [show, handleShow] = useState(false); 
   const [image, setImage] = useState("https://i.pinimg.com/originals/0d/dc/ca/0ddccae723d85a703b798a5e682c23c1.png")
+ 
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
         setImage(result.user.photoURL)
         handleClick(result.user);
       })
@@ -18,8 +19,6 @@ function Navbar({handleClick}) {
       });
   };
 //   console.log(props)
-
-
 
   useEffect(() => {
     window.addEventListener("scroll", () => {

@@ -5,24 +5,14 @@ import Navbar from './Navbar';
 import Row from './Row';
 import {useState} from 'react'
 
-// function Child() {
-//   return (
-//     <div>
-//       <button onClick={event => handleClick(100)}>Click</button>
-//     </div>
-//   );
-// }
-
-
 function App() {
   const [obj, setObj] = useState();
 
   const handleClick = num => {
     // 👇️ take parameter passed from Child component
     setObj(num);
-    // console.log("uperr wala",obj);
   };
-  console.log("niche wala ",obj)
+
   return (
     <div className="App">
       <Navbar handleClick={handleClick}/>
