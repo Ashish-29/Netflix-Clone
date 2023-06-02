@@ -18,7 +18,7 @@ function App() {
       <Navbar handleClick={handleClick}/>
       <Banner/>
       <header className="App-header">
-        <Row obj={obj}  title="NETFLIX ORIGINALS" fetchUrl={requests.fetchRomanceMovies} isLargeRow={true}/>
+        <Row obj={obj} title= "NETFLIX ORIGINALS" fetchUrl={requests.fetchRomanceMovies} isLargeRow={true}/>
         <Row obj={obj} title= "Trending now" fetchUrl={requests.fetchTrending}/>
         <Row obj={obj} title= "TopRated Movies" fetchUrl={requests.fetchTopRated}/>
         <Row obj={obj} title= "ComedyMovies" fetchUrl={requests.fetchComedyMovies}/>
