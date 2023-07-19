@@ -1,32 +1,24 @@
-import './App.css';
-import requests from './request';
-import Banner from './Banner';
-import Navbar from './Navbar';
-import Row from './Row';
-import {useState} from 'react'
+import requests from "./components/request";
+import Banner from "./components/Banner";
+import Navbar from "./components/Navbar";
+import Row from "./components/Row";
+import "./assets/css/App.css";
 
 function App() {
-  const [obj, setObj] = useState();
-
-  const handleClick = num => {
-    // 👇️ take parameter passed from Child component
-    setObj(num);
-  };
-
   return (
     <div className="App">
-      <Navbar handleClick={handleClick}/>
-      <Banner/>
+      <Navbar />
+      <Banner />
       <header className="App-header">
-        <Row obj={obj} title= "NETFLIX ORIGINALS" fetchUrl={requests.fetchRomanceMovies} isLargeRow={true}/>
-        <Row obj={obj} title= "Trending now" fetchUrl={requests.fetchTrending}/>
-        <Row obj={obj} title= "TopRated Movies" fetchUrl={requests.fetchTopRated}/>
-        <Row obj={obj} title= "ComedyMovies" fetchUrl={requests.fetchComedyMovies}/>
-        <Row obj={obj} title= "HorrorMovies" fetchUrl={requests.fetchHorrorMovies}/>
-        <Row obj={obj} title= "RomanceMovies" fetchUrl={requests.fetchRomanceMovies}/>
-        <Row obj={obj} title= "SciFi Movies" fetchUrl={requests.fetchSciFi}/>
-        <Row obj={obj} title= "Western Movies" fetchUrl={requests.fetchWestern}/>
-        <Row obj={obj} title= "Animation Movies" fetchUrl={requests.fetchAnimation}/>
+        <Row num={1} title="NETFLIX ORIGINALS" fetchUrl={requests.fetchRomanceMovies} isLargeRow={true} />
+        <Row num={2} title="Trending now" fetchUrl={requests.fetchTrending} />
+        <Row num={3} title="TopRated Movies" fetchUrl={requests.fetchTopRated} />
+        <Row num={4} title="ComedyMovies" fetchUrl={requests.fetchComedyMovies} />
+        <Row num={5} title="HorrorMovies" fetchUrl={requests.fetchHorrorMovies} />
+        <Row num={6} title="RomanceMovies" fetchUrl={requests.fetchRomanceMovies} />
+        <Row num={7} title="SciFi Movies" fetchUrl={requests.fetchSciFi} />
+        <Row num={8} title="Western Movies" fetchUrl={requests.fetchWestern} />
+        <Row num={9} title="Animation Movies" fetchUrl={requests.fetchAnimation} />
       </header>
     </div>
   );

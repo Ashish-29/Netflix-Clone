@@ -1,36 +1,38 @@
 import React, { useEffect, useState } from "react";
-import "./Navbar.css";
-import  {signInWithPopup} from "firebase/auth";
-import {auth , provider} from './firebase';
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "./firebase";
+import { useUser } from "../context/user";
+import "../assets/css/Navbar.css";
 
-function Navbar({handleClick}) {
-  const [show, handleShow] = useState(false); 
-  const [image, setImage] = useState("https://i.pinimg.com/originals/0d/dc/ca/0ddccae723d85a703b798a5e682c23c1.png")
- 
+function Navbar({ handleClick }) {
+  const [setUser] = useUser();
+  const [show, handleShow] = useState(false);
+  const [image, setImage] = useState("https://i.pinimg.com/originals/0d/dc/ca/0ddccae723d85a703b798a5e682c23c1.png");
+
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        // console.log(result.user);
-        setImage(result.user.photoURL)
-        handleClick(result.user);
+        setImage(result.user.photoURL);
+        setUser(result.user);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-//   console.log(props)
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (window.screenY > 100) {
         handleShow(true);
-      } else handleShow(false);
+      } else {
+        handleShow(false);
+      }
     });
     return () => {
       window.removeEventListener("scroll");
     };
   }, []);
-  
+
   return (
     <div className={`nav ${show && "nav_black"}`}>
       <img
@@ -40,11 +42,7 @@ function Navbar({handleClick}) {
       ></img>
 
       <button onClick={signInWithGoogle} className="profile_logo">
-        <img
-          className="profile_logo"
-          src={image}
-          alt="netflix profile logo"
-        />
+        <img className="profile_logo" src={image} alt="profile_logo" />
       </button>
     </div>
   );
