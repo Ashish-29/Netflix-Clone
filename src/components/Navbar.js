@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "./firebase";
 import { useUser } from "../context/user";
+import toast from 'react-hot-toast';
 import "../assets/css/Navbar.css";
 
-function Navbar({ handleClick }) {
-  const [setUser] = useUser();
+function Navbar() {
+  const [user, setUser] = useUser();
   const [show, handleShow] = useState(false);
   const [image, setImage] = useState("https://i.pinimg.com/originals/0d/dc/ca/0ddccae723d85a703b798a5e682c23c1.png");
 
@@ -14,6 +15,7 @@ function Navbar({ handleClick }) {
       .then((result) => {
         setImage(result.user.photoURL);
         setUser(result.user);
+        toast.success(`Welcome ${result.user.displayName}!`);
       })
       .catch((error) => {
         console.log(error);

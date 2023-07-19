@@ -4,7 +4,9 @@ import "../assets/css/Row.css";
 import Youtube from "react-youtube";
 import { usePlay } from "../context/play";
 import { useUser } from "../context/user";
+import toast from 'react-hot-toast';
 const base_Url = "https://image.tmdb.org/t/p/original";
+
 
 // const url = `https://api.themoviedb.org/3/search/movie?api_key=60cd940dda2f953168a044483b9e7fb9&language=en-US&query=${query}&page=1&include_adult=false`;
 
@@ -41,11 +43,16 @@ function Row({ num, title, fetchUrl, isLargeRow }) {
   }, [fetchUrl]);
 
   const handleClick = async (movie) => {
-    let trailerurl = await axios.get(
-      `/movie/${movie.id}/videos?api_key=fb34530271b349314af0de263d16ab5a`
-    );
-    user ? setTrailerUrl(trailerurl.data.results[0]?.key) : setTrailerUrl("");
-    setPlay(num);
+    let trailerurl = await axios.get(`/movie/${movie.id}/videos?api_key=fb34530271b349314af0de263d16ab5a`);
+
+    if(user) {
+      setTrailerUrl(trailerurl.data.results[0]?.key);
+      setPlay(num);
+    } else {
+      setTrailerUrl("");
+      setPlay(0);
+      toast.error("Please login to watch the trailer!");
+    }
   };
 
   return (

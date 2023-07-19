@@ -3,10 +3,12 @@ import Banner from "./components/Banner";
 import Navbar from "./components/Navbar";
 import Row from "./components/Row";
 import "./assets/css/App.css";
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
     <div className="App">
+      <Toaster />
       <Navbar />
       <Banner />
       <header className="App-header">
